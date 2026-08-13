@@ -24,7 +24,7 @@ const limiter = rateLimit({
 
 app.use(cors(), helmet(), limiter, express.json());
 app.get("/", (req: Request, res: Response) => {
-  res.status(200).json({ message: "Welcome In My Api" });
+  res.status(200).json({ message: "Welcome In Elseady Space" });
 });
 
 app.use("/api/projects", projectRouter);

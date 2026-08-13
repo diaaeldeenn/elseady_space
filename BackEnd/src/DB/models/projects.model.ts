@@ -28,7 +28,7 @@ const ProjectSchema = new Schema<ProjectI>(
     },
     technologies: [{ type: String }],
     thumbnail: { type: String, required: true },
-    liveDemo: { type: String, required: true },
+    liveDemo: { type: String },
     features: [{ type: String }],
     githubUrl: { type: String },
     liveUrl: { type: String },
