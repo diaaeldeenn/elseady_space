@@ -8,6 +8,7 @@ import {
   MapPin,
   ArrowUpRight,
   FileWarning,
+  FileText,
 } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { ProfileI } from "@/interfaces/profile.interface";
@@ -136,7 +137,36 @@ export default function CvPageViewer({ profile }: Props) {
         variants={fadeUp}
         className="flex flex-col gap-4 lg:order-2 order-1"
       >
-        <div className="border border-border bg-muted/20 overflow-hidden h-[70svh] sm:h-[calc(100svh-260px)] min-h-125">
+        <div className="flex lg:hidden flex-col items-center justify-center gap-4 px-6 text-center border border-border bg-muted/20 min-h-125">
+          <FileText size={24} className="text-muted-foreground" />
+
+          <p className="font-mono text-xs tracking-widest text-muted-foreground max-w-xs">
+            PDF PREVIEW ISN&apos;T AVAILABLE ON MOBILE
+          </p>
+
+          <div className="flex flex-wrap justify-center gap-3">
+            <a
+              href={profile.cv}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.15em] text-foreground border border-foreground px-5 py-3 bg-background hover:bg-foreground hover:text-background transition-colors duration-200"
+            >
+              <FileText size={12} />
+              OPEN CV
+            </a>
+
+            <a
+              href={downloadUrl}
+              download
+              className="inline-files inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.15em] text-muted-foreground border border-border px-5 py-3 bg-background hover:text-foreground transition-colors duration-200"
+            >
+              <Download size={12} />
+              DOWNLOAD
+            </a>
+          </div>
+        </div>
+
+        <div className="hidden lg:block border border-border bg-muted/20 overflow-hidden h-[70svh] sm:h-[calc(100svh-260px)] min-h-125">
           <object
             data={profile.cv}
             type="application/pdf"

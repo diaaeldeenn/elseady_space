@@ -119,6 +119,32 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--muted-foreground) transparent;
+}
+
+html::-webkit-scrollbar {
+  width: 8px;
+}
+
+html::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: var(--muted-foreground);
+  border: 2px solid transparent;
+  background-clip: content-box;
+  border-radius: 0;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background: var(--foreground);
+  background-clip: content-box;
+}
+
 @layer utilities {
   .scrollbar-hide {
     -ms-overflow-style: none;
