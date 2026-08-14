@@ -139,14 +139,15 @@ export default function CvPageViewer({ profile }: Props) {
       >
         <div className="flex lg:hidden flex-col items-center justify-center gap-4 px-6 text-center border border-border bg-muted/20 min-h-125">
           <FileText size={24} className="text-muted-foreground" />
-
           <p className="font-mono text-xs tracking-widest text-muted-foreground max-w-xs">
             PDF PREVIEW ISN&apos;T AVAILABLE ON MOBILE
           </p>
 
           <div className="flex flex-wrap justify-center gap-3">
             <a
-              href={profile.cv}
+              href={`https://docs.google.com/viewer?url=${encodeURIComponent(
+                profile.cv,
+              )}&embedded=true`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.15em] text-foreground border border-foreground px-5 py-3 bg-background hover:bg-foreground hover:text-background transition-colors duration-200"
@@ -158,7 +159,7 @@ export default function CvPageViewer({ profile }: Props) {
             <a
               href={downloadUrl}
               download
-              className="inline-files inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.15em] text-muted-foreground border border-border px-5 py-3 bg-background hover:text-foreground transition-colors duration-200"
+              className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.15em] text-muted-foreground border border-border px-5 py-3 bg-background hover:text-foreground transition-colors duration-200"
             >
               <Download size={12} />
               DOWNLOAD
