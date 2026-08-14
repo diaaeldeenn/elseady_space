@@ -5,6 +5,7 @@ import { FaGithub } from "react-icons/fa";
 import ProjectVideo from "@/components/projects/project-video";
 import { SpeceficProjectI } from "@/interfaces/project.interface";
 import { getSpeceficProject } from "@/api/projects.api";
+import { motion } from "framer-motion";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -58,18 +59,48 @@ export default async function ProjectDetails({ params }: Props) {
                 <p className="font-mono text-[10px] tracking-[0.15em] text-foreground mb-4">
                   KEY FEATURES
                 </p>
-                <ul className="flex flex-col gap-3">
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.2 }}
+                  variants={{
+                    hidden: {},
+                    visible: {
+                      transition: {
+                        staggerChildren: 0.05,
+                      },
+                    },
+                  }}
+                  className="flex flex-col gap-3"
+                >
                   {project.features.map((feature, i) => (
-                    <li key={i} className="flex items-start gap-3">
+                    <motion.div
+                      key={i}
+                      variants={{
+                        hidden: {
+                          opacity: 0,
+                          y: 8,
+                        },
+                        visible: {
+                          opacity: 1,
+                          y: 0,
+                          transition: {
+                            duration: 0.35,
+                            ease: "easeOut",
+                          },
+                        },
+                      }}
+                      className="flex items-start gap-3"
+                    >
                       <span className="font-mono text-[9px] text-accent mt-0.5 shrink-0">
                         {String(i + 1).padStart(2, "0")}
                       </span>
                       <span className="font-sans text-sm text-muted-foreground">
                         {feature}
                       </span>
-                    </li>
+                    </motion.div>
                   ))}
-                </ul>
+                </motion.div>
               </div>
             )}
           </div>

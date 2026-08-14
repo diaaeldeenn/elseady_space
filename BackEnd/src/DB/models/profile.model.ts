@@ -5,6 +5,7 @@ export interface ProfileI extends Document {
   title: string;
   location: string;
   bio: string;
+  cv:string;
   email: string;
   github: string;
   linkedin: string;
@@ -19,6 +20,7 @@ const ProfileSchema = new Schema<ProfileI>(
     title: { type: String, required: true },
     location: { type: String, required: true },
     bio: { type: String, required: true },
+    cv: { type: String, required: true },
     email: { type: String, required: true },
     github: { type: String, required: true },
     linkedin: { type: String, required: true },

@@ -1,33 +1,36 @@
 "use client";
 
-import {  useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
-import { X, Menu, FileText, Download, ChevronDown } from "lucide-react";
+import { X, Menu } from "lucide-react";
 import ThemeToggle from "@/components/theme-toggle";
+import CvActions from "@/components/cv/cv-actions";
 
 const navLinks = [
   { label: "PROJECTS", href: "/projects" },
   { label: "REFERENCES", href: "/references" },
   { label: "ABOUT", href: "/about" },
+  { label: "CONTACT", href: "/contact" },
 ];
 
-export default function Navbar() {
+interface NavbarProps {
+  cvUrl: string;
+}
+
+export default function Navbar({ cvUrl }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [cvOpen, setCvOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
     setMenuOpen(false);
-    setCvOpen(false);
   }, [pathname]);
 
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-background/80 backdrop-blur-md border-b border-border">
         <nav className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          
           <Link
             href="/"
             className="font-mono text-sm font-medium tracking-[0.15em] text-foreground hover:text-accent transition-colors duration-200"
@@ -59,58 +62,8 @@ export default function Navbar() {
           </ul>
 
           <div className="hidden md:flex items-center gap-4">
-            <div className="relative">
-              {cvOpen && (
-                <div
-                  className="fixed inset-0 z-40"
-                  onClick={() => setCvOpen(false)}
-                />
-              )}
-              <button
-                onClick={() => setCvOpen((prev) => !prev)}
-                className="relative z-50 font-mono text-xs tracking-[0.12em] text-muted-foreground hover:text-foreground transition-colors duration-200 flex items-center gap-1.5"
-              >
-                CV
-                <motion.span
-                  animate={{ rotate: cvOpen ? 180 : 0 }}
-                  transition={{ duration: 0.2 }}
-                  className="block"
-                >
-                  <ChevronDown size={14} className="text-current" />
-                </motion.span>
-              </button>
-
-              <AnimatePresence>
-                {cvOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -6 }}
-                    transition={{ duration: 0.15 }}
-                    className="absolute right-0 top-full mt-3 w-44 bg-card border border-border shadow-md z-50"
-                  >
-                    <Link
-                      href="/cv"
-                      className="flex items-center gap-2.5 px-4 py-3 text-xs font-mono tracking-[0.08em] text-muted-foreground hover:text-foreground hover:bg-muted transition-colors duration-150 border-b border-border"
-                    >
-                      <FileText size={13} />
-                      VIEW CV
-                    </Link>
-                    <a
-                      href="/cv/Diaa-Eldeen-CV.pdf"
-                      download
-                      className="flex items-center gap-2.5 px-4 py-3 text-xs font-mono tracking-[0.08em] text-muted-foreground hover:text-foreground hover:bg-muted transition-colors duration-150"
-                    >
-                      <Download size={13} />
-                      DOWNLOAD CV
-                    </a>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-
+            <CvActions cvUrl={cvUrl} variant="dropdown" label="CV" />
             <span className="w-px h-4 bg-border" />
-
             <ThemeToggle />
           </div>
 
@@ -167,30 +120,16 @@ export default function Navbar() {
                 <motion.li
                   initial={{ opacity: 0, x: -16 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.1 + navLinks.length * 0.06, duration: 0.3 }}
+                  transition={{
+                    delay: 0.1 + navLinks.length * 0.06,
+                    duration: 0.3,
+                  }}
                   className="pt-8"
                 >
                   <p className="font-mono text-xs tracking-[0.15em] text-muted-foreground mb-4">
                     CV
                   </p>
-                  <div className="flex gap-4">
-                    <Link
-                      href="/cv"
-                      onClick={() => setMenuOpen(false)}
-                      className="flex items-center gap-2 font-mono text-xs tracking-widest text-muted-foreground hover:text-foreground transition-colors duration-200 border border-border px-4 py-2.5"
-                    >
-                      <FileText size={12} />
-                      VIEW
-                    </Link>
-                    <a
-                      href="/cv/Diaa-Eldeen-CV.pdf"
-                      download
-                      className="flex items-center gap-2 font-mono text-xs tracking-widest text-muted-foreground hover:text-foreground transition-colors duration-200 border border-border px-4 py-2.5"
-                    >
-                      <Download size={12} />
-                      DOWNLOAD
-                    </a>
-                  </div>
+                  <CvActions cvUrl={cvUrl} variant="inline" />
                 </motion.li>
               </ul>
             </div>
