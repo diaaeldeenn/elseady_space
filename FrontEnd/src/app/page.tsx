@@ -5,7 +5,7 @@ import { ProfileI } from "@/interfaces/profile.interface";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Full-Stack Developer",
+  title: "Diaa Eldeen | Full-Stack Developer",
   description:
     "Portfolio of Diaa Eldeen, a Full-Stack Developer specializing in React, Next.js, Node.js, and modern web development.",
 };

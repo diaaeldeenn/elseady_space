@@ -5,7 +5,7 @@ import { Metadata } from "next";
 
 
 export const metadata: Metadata = {
-  title: "Developer References",
+  title: "References",
   description:
     "Technical references covering JavaScript, React, TypeScript, Next.js, Tailwind CSS, and other web development technologies.",
 };
