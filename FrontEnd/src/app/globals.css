@@ -116,30 +116,49 @@
 
   html {
     @apply font-sans;
+
+    color-scheme: light;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: #686a67 #f5f2ea;
   }
-}
 
-html {
-  scroll-behavior: smooth;
-  scrollbar-width: thin;
-  scrollbar-color: var(--muted-foreground) transparent;
-}
+  html.dark {
+    color-scheme: dark;
+    scrollbar-color: #9a9c98 #111315;
+  }
 
-::-webkit-scrollbar {
-  width: 8px;
-}
+  html::-webkit-scrollbar {
+    width: 8px;
+  }
 
-::-webkit-scrollbar-track {
-  background: transparent;
-}
+  html::-webkit-scrollbar-track {
+    background: #f5f2ea;
+  }
 
-::-webkit-scrollbar-thumb {
-  background-color: var(--muted-foreground);
-  border-radius: 4px;
-}
+  html::-webkit-scrollbar-thumb {
+    background: #686a67 !important;
+    border-radius: 0;
+    border: 2px solid #f5f2ea;
+  }
 
-::-webkit-scrollbar-thumb:hover {
-  background-color: var(--foreground);
+  html::-webkit-scrollbar-thumb:hover {
+    background: #151719 !important;
+  }
+
+  html.dark::-webkit-scrollbar-track {
+    background: #111315;
+  }
+
+  html.dark::-webkit-scrollbar-thumb {
+    background: #9a9c98 !important;
+    border-radius: 0;
+    border: 2px solid #111315;
+  }
+
+  html.dark::-webkit-scrollbar-thumb:hover {
+    background: #f3f0e8 !important;
+  }
 }
 
 @layer utilities {

@@ -6,16 +6,36 @@ import ProjectVideo from "@/components/projects/project-video";
 import { SpeceficProjectI } from "@/interfaces/project.interface";
 import { getSpeceficProject } from "@/api/projects.api";
 import ProjectFeatures from "@/components/projects/project-features";
+import LiveDemoPopup from "@/components/projects/live-demo-popup";
+import { Metadata } from "next";
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const project = await getSpeceficProject(slug);
+
+  if (!project) {
+    return {
+      title: "Project Not Found | Diaa Eldeen",
+    };
+  }
+
+  return {
+    title: project.title,
+    description: project.description,
+  };
+}
+
 export default async function ProjectDetails({ params }: Props) {
   const { slug } = await params;
   const project: SpeceficProjectI = await getSpeceficProject(slug);
-
   if (!project) notFound();
+  const isVideo = project.liveDemo
+    ? /\.(mp4|webm|ogv)$/i.test(project.liveDemo)
+    : false;
 
   return (
     <section className="min-h-[calc(100svh-4rem)] py-16 md:py-24">
@@ -110,6 +130,7 @@ export default async function ProjectDetails({ params }: Props) {
           </div>
         </div>
       </div>
+      {isVideo && <LiveDemoPopup />}
     </section>
   );
 }

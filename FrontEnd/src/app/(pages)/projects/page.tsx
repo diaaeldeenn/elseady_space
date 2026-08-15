@@ -1,6 +1,13 @@
 import { getProjects } from "@/api/projects.api";
 import ProjectsClient from "@/components/projects/projects-client";
 import { ProjectsI } from "@/interfaces/project.interface";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Projects",
+  description:
+    "Explore projects built by Diaa Eldeen across frontend and backend development, using React, Next.js, Node.js, and modern web technologies.",
+};
 
 export default async function Projects() {
   const projects: ProjectsI[] = await getProjects();

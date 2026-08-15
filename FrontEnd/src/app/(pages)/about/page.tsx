@@ -1,6 +1,15 @@
 import { getProfile } from "@/api/profile.api";
 import { ProfileI } from "@/interfaces/profile.interface";
 import AboutClient from "@/components/about/about-client";
+import { Metadata } from "next";
+
+
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "Learn more about Diaa Eldeen, a Full-Stack Developer focused on building modern web applications with React, Next.js, Node.js, and TypeScript.",
+};
+
 
 export default async function About() {
   const profile: ProfileI = await getProfile();

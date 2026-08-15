@@ -4,9 +4,26 @@ import { ArrowLeft } from "lucide-react";
 import { ReferenceI } from "@/interfaces/reference.interface";
 import { getSpeceficReference } from "@/api/references.api";
 import ReferenceDetailClient from "@/components/references/reference-detail-client";
+import { Metadata } from "next";
 
 interface Props {
   params: Promise<{ slug: string }>;
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const reference = await getSpeceficReference(slug);
+
+  if (!reference) {
+    return {
+      title: "Reference Not Found | Diaa Eldeen",
+    };
+  }
+
+  return {
+    title: `${reference.title} | Diaa Eldeen`,
+    description: `Developer reference covering ${reference.title} and related web development concepts.`,
+  };
 }
 
 export default async function ReferenceDetails({ params }: Props) {

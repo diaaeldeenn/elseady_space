@@ -1,28 +1,20 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import Image from "next/image";
 
 export default function ProjectVideo({ src }: { src: string }) {
-  const isVideo = src.match(/\.(mp4|webm|ogv)$/i);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    if (isVideo) {
-      videoRef.current?.play().catch(() => {});
-    }
-  }, [isVideo]);
+  const isVideo = /\.(mp4|webm|ogv)$/i.test(src);
 
   return (
     <div className="relative w-full aspect-video bg-black border border-border overflow-hidden">
       {isVideo ? (
         <video
-          ref={videoRef}
           src={src}
           loop
           muted
           playsInline
           controls
+          preload="metadata"
           className="w-full h-full object-contain"
         />
       ) : (

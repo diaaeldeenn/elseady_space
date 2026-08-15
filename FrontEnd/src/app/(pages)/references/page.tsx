@@ -1,6 +1,15 @@
 import { getReferences } from "@/api/references.api";
 import ReferencesClient from "@/components/references/references-client";
 import { ReferenceI } from "@/interfaces/reference.interface";
+import { Metadata } from "next";
+
+
+export const metadata: Metadata = {
+  title: "Developer References",
+  description:
+    "Technical references covering JavaScript, React, TypeScript, Next.js, Tailwind CSS, and other web development technologies.",
+};
+
 
 export default async function References() {
   const references: ReferenceI[] = await getReferences();
