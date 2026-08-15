@@ -4,7 +4,7 @@ import { ProfileI } from "@/interfaces/profile.interface";
 import CvPageViewer from "@/components/cv/cv-page-viewer";
 
 export const metadata: Metadata = {
-  title: "CV | Diaa Eldeen",
+  title: "CV",
   description: "View Diaa Eldeen's CV.",
 };
 
