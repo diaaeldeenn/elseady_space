@@ -96,7 +96,7 @@ export default function HeroSection({ profile }: HeroSectionProps) {
   const downloadUrl = getCvDownloadUrl(profile.cv);
 
   return (
-    <section className="relative min-h-[calc(100svh-4rem)] overflow-hidden flex items-center py-10 md:py-12">
+    <section className="relative min-h-[calc(100svh-4rem)] overflow-hidden flex items-center py-10 md:py-4">
       <motion.div
         className="max-w-6xl mx-auto px-6 w-full"
         variants={containerVariants}
@@ -126,10 +126,7 @@ export default function HeroSection({ profile }: HeroSectionProps) {
                     delay: 0.15,
                     ease: [0.22, 1, 0.36, 1],
                   }}
-                  className="font-mono font-medium leading-[0.88] tracking-tighter text-foreground"
-                  style={{
-                    fontSize: "clamp(3rem, 7vw, 6.5rem)",
-                  }}
+                  className="font-mono font-medium leading-[0.88] tracking-tighter text-foreground text-[length:clamp(3rem,7vw,6.5rem)] md:text-[length:clamp(2.75rem,min(7vw,10.5vh),6.5rem)]"
                 >
                   {firstName}
                   <br />
@@ -139,7 +136,7 @@ export default function HeroSection({ profile }: HeroSectionProps) {
 
               <motion.p
                 variants={fadeUp}
-                className="font-sans text-sm sm:text-base text-muted-foreground max-w-lg leading-relaxed mt-4 md:mt-5"
+                className="font-sans text-sm sm:text-base text-muted-foreground max-w-lg md:max-w-xl leading-relaxed mt-4 md:mt-5"
               >
                 {profile.bio}
               </motion.p>
@@ -213,7 +210,7 @@ export default function HeroSection({ profile }: HeroSectionProps) {
               >
                 <motion.div
                   variants={techContainerVariants}
-                  className="flex flex-wrap gap-x-4 gap-y-2"
+                  className="flex flex-wrap gap-x-4 gap-y-2 md:grid md:grid-cols-[repeat(4,max-content)] md:gap-x-8 md:gap-y-2"
                 >
                   {stack.map((tech, i) => (
                     <motion.span
@@ -224,7 +221,7 @@ export default function HeroSection({ profile }: HeroSectionProps) {
                       {tech}
 
                       {i < stack.length - 1 && (
-                        <span className="ml-4 text-border select-none">
+                        <span className="ml-4 text-border select-none md:hidden">
                           ·
                         </span>
                       )}
@@ -252,7 +249,7 @@ export default function HeroSection({ profile }: HeroSectionProps) {
                   </div>
                 </div>
 
-                <div className="relative h-75 sm:h-80 md:h-80 w-full overflow-hidden bg-background">
+                <div className="relative h-75 sm:h-80 md:h-[clamp(14rem,42vh,24rem)] w-full overflow-hidden bg-background">
                   <Image
                     src="/images/diaa-eldeen.jpg"
                     alt={`${profile.name} - ${profile.title}`}
