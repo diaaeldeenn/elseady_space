@@ -14,6 +14,7 @@ const stack = [
   "Next.js",
   "Node.js",
   "Express.js",
+  "NestJS",
   "MongoDB",
   "TypeScript",
 ];
@@ -95,7 +96,7 @@ export default function HeroSection({ profile }: HeroSectionProps) {
   const downloadUrl = getCvDownloadUrl(profile.cv);
 
   return (
-    <section className="relative min-h-[calc(100svh-4rem)] md:h-[calc(100svh-6rem)] md:min-h-0 overflow-hidden flex items-center py-10 md:py-0">
+    <section className="relative min-h-[calc(100svh-4rem)] overflow-hidden flex items-center py-10 md:py-12">
       <motion.div
         className="max-w-6xl mx-auto px-6 w-full"
         variants={containerVariants}
@@ -106,7 +107,7 @@ export default function HeroSection({ profile }: HeroSectionProps) {
         <div className="flex flex-col justify-center">
           <motion.p
             variants={fadeUp}
-            className="font-mono text-[10px] sm:text-xs tracking-[0.2em] text-muted-foreground mb-6 md:mb-0"
+            className="font-mono text-[10px] sm:text-xs tracking-[0.2em] text-muted-foreground mb-4 md:mb-3"
           >
             01 / {profile.title.toUpperCase()}
           </motion.p>
@@ -127,7 +128,7 @@ export default function HeroSection({ profile }: HeroSectionProps) {
                   }}
                   className="font-mono font-medium leading-[0.88] tracking-tighter text-foreground"
                   style={{
-                    fontSize: "clamp(3.5rem, 9vw, 8rem)",
+                    fontSize: "clamp(3rem, 7vw, 6.5rem)",
                   }}
                 >
                   {firstName}
@@ -138,14 +139,14 @@ export default function HeroSection({ profile }: HeroSectionProps) {
 
               <motion.p
                 variants={fadeUp}
-                className="font-sans text-sm sm:text-base text-muted-foreground max-w-md leading-relaxed mt-5 md:mt-6"
+                className="font-sans text-sm sm:text-base text-muted-foreground max-w-lg leading-relaxed mt-4 md:mt-5"
               >
                 {profile.bio}
               </motion.p>
 
               <motion.div
                 variants={fadeUp}
-                className="flex flex-col gap-3 mt-5 md:mt-6"
+                className="flex flex-col gap-3 mt-4 md:mt-5"
               >
                 <div className="flex flex-wrap items-center gap-3">
                   <Link
@@ -208,7 +209,7 @@ export default function HeroSection({ profile }: HeroSectionProps) {
 
               <motion.div
                 variants={fadeUp}
-                className="mt-6 pt-5 border-t border-border"
+                className="mt-5 pt-4 border-t border-border"
               >
                 <motion.div
                   variants={techContainerVariants}
@@ -251,7 +252,7 @@ export default function HeroSection({ profile }: HeroSectionProps) {
                   </div>
                 </div>
 
-                <div className="relative h-75 sm:h-90 md:h-90 w-full overflow-hidden bg-background">
+                <div className="relative h-75 sm:h-80 md:h-80 w-full overflow-hidden bg-background">
                   <Image
                     src="/images/diaa-eldeen.jpg"
                     alt={`${profile.name} - ${profile.title}`}
